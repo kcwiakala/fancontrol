@@ -1,0 +1,27 @@
+{
+  "name": "fancontrol",
+  "version": "1.0.0",
+  "description": "FanControl service for linux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcwiakala/fancontrol.git"
+  },
+  "keywords": [
+    "fancontrol"
+  ],
+  "author": "Konrad Cwiakala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcwiakala/fancontrol/issues"
+  },
+  "homepage": "https://github.com/kcwiakala/fancontrol#readme",
+  "dependencies": {
+    "async": "^3.1.0",
+    "lodash": "^4.17.15",
+    "log4js": "^5.1.0"
+  }
+}

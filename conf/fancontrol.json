@@ -1,0 +1,11 @@
+{
+  "controlers": [
+    {
+      "sensor": "hwmon0/temp1",
+      "pwm": "hwmon0/pwm1",
+      "curve": [[30,50], [80,255]],
+      "alpha": 0.8,
+      "hyst": 0
+    }
+  ]
+}
