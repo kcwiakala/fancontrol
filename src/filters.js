@@ -16,9 +16,7 @@ const sma = (length, init) => {
 }
 
 exports.makeFilter = opts => {
-  if(opts === undefined) {
-    return value => value;
-  } 
+  opts = opts || {};
   switch (opts.type) {
     case 'LPF':
       return lpf(opts.alpha || 0.5, opts.init || 100);

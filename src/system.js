@@ -12,7 +12,7 @@ class System {
   }
 
   update(done) {
-    async.each(_.values(this.devices), (d, cb) => d.update(cb), err => {});
+    async.each(_.values(this.devices), (d, cb) => d.update(cb), done);
   }
 }
 

@@ -13,7 +13,12 @@ const opts = require('./conf/fancontrol');
 const sys = new System();
 logger.info('System Configuration:', sys);
 
-setInterval(sys.update.bind(sys), opts.probeInterval || 1000);
+setInterval(() => sys.update(err => {
+  if(err) {
+    logger.error('Unable to update system readings');
+    throw new Error(err);
+  }
+}), opts.probeInterval || 1000);
 
 const Controler = require('./src/controler');
 
@@ -23,11 +28,17 @@ const controlers = opts.controlers.map(copts => {
   return new Controler(sys.devices[sdev].sensors[sname], sys.devices[pdev].pwms[pname], copts);
 });
 logger.info('Controlers:', controlers);
-setInterval(() => async.each(controlers, (c, cb) => c.update(cb)), opts.controlInterval || 1000);
+setInterval(() => async.each(controlers, (c, cb) => c.update(cb), err => {
+  if(err) {
+    logger.error('Unable to set control outputs');
+    throw new Error(err);
+  }
+}), opts.controlInterval || 1000);
 
-function cleanup(exit_code) {
-  return () => async.each(controlers, (c, cb) => c.cleanup(cb), () => process.exit(exit_code));
-}
+const cleanup = exit_code => () => {
+  logger.info('Cleanup on exit with code', exit_code);
+  async.each(controlers, (c, cb) => c.cleanup(cb), () => process.exit(exit_code));
+};
 
-['SIGINT', 'SIGHUP'].forEach(sig => process.on(sig, cleanup(1)));
+['SIGINT', 'SIGHUP', 'uncaughtException'].forEach(sig => process.on(sig, cleanup(1)));
 ['SIGTERM', 'SIGQUIT'].forEach(sig => process.on(sig, cleanup(0)));

@@ -2,10 +2,11 @@ const fs = require('fs');
 const path = require('path');
 
 class Sensor {
-  constructor(device, name) {
+  constructor(device, name, scale) {
     this.name = name;
     this.sfile = path.join(device, `${name}_input`);
     this.readout = -1;
+    this.scale = scale || 1.0;
   }
 
   update(done) {
@@ -19,19 +20,8 @@ class Sensor {
   }
 
   get value() {
-    return this.readout;
+    return this.readout * this.scale;
   }
 }
 
-class TempSensor extends Sensor {
-  constructor(device, name) {
-    super(device, name);
-  }
-
-  get value() {
-    return this.readout/1000;
-  }
-}
-
-exports.Fan = Sensor;
-exports.TempSensor = TempSensor;
+module.exports = Sensor

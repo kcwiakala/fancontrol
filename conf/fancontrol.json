@@ -18,6 +18,10 @@
       "sensor": "hwmon0/temp1",
       "pwm": "hwmon0/pwm1",
       "polyline": [[30,40], [50,100], [70,255]],
+      "inputFilter": {
+        "type": "LNF",
+        "alpha": 0.5
+      },
       "stop": false,
       "alpha": 0.5,
       "hyst": 2
