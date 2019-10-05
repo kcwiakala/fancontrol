@@ -1,5 +1,4 @@
 const _ = require('lodash');
-const async = require('async');
 const fs = require('fs');
 const path = require('path');
 
@@ -21,13 +20,6 @@ class Device {
       .reduce((o, n) => _.set(o, n, new Sensor(this.path, n, 0.001)), {});
     this.pwms = extract(files, /pwm\d+_/)
       .reduce((o, n) => _.set(o, n, new Pwm(this.path, n)), {});
-
-    this.updateable = [..._.values(this.fans), ..._.values(this.sensors)];
-    this.update();
-  }
-
-  update(done) {
-    async.each(this.updateable, (s, cb) => s.update(cb), done);
   }
 }
 

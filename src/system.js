@@ -10,10 +10,6 @@ class System {
     logger.info('Devices discovered in system:', devices);
     this.devices = devices.reduce((o,n) => _.set(o, n, new Device(n)), {});
   }
-
-  update(done) {
-    async.each(_.values(this.devices), (d, cb) => d.update(cb), done);
-  }
 }
 
 module.exports = System;
