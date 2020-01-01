@@ -8,7 +8,7 @@ class System {
   constructor() {
     const devices = fs.readdirSync('/sys/class/hwmon');
     logger.info('Devices discovered in system:', devices);
-    this.devices = devices.reduce((o,n) => _.set(o, n, new Device(n)), {});
+    this.devices = devices.map(id => new Device(id)).reduce((o,d) => _.set(o, d.name, d), {});
   }
 }
 

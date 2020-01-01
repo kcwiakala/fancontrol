@@ -3,20 +3,20 @@
   "controlInterval": 1000,
   "controlers": [
     {
-      "sensor": "hwmon2/temp1",
-      "pwm": "hwmon2/pwm1",
+      "sensor": "amdgpu/temp1",
+      "pwm": "amdgpu/pwm1",
       "inputFilter": {
         "type": "LNF",
         "alpha": 0.5
       },
-      "polyline": [[43,80], [80,255]],
+      "polyline": [[43,80], [60,130], [80,255]],
       "stop": false,
       "alpha": 0.5,
       "hyst": 3
     },
     {
-      "sensor": "hwmon0/temp1",
-      "pwm": "hwmon0/pwm1",
+      "sensor": "it8665/temp1",
+      "pwm": "it8665/pwm1",
       "polyline": [[30,40], [50,100], [70,255]],
       "inputFilter": {
         "type": "LNF",
@@ -24,20 +24,27 @@
       },
       "stop": false,
       "alpha": 0.5,
-      "hyst": 2
+      "hyst": 2.5
     },
     {
-      "sensor": "hwmon0/temp3",
-      "pwm": "hwmon0/pwm3",
-      "polyline": [[30,40], [50,255]],
+      "sensor": "it8665/temp2",
+      "pwm": "it8665/pwm2",
+      "polyline": [[40,95], [50,255]],
       "stop": false,
       "alpha": 0.5
     },
     {
-      "sensor": "hwmon0/temp4",
-      "pwm": "hwmon0/pwm4",
-      "polyline": [[30,40], [50,255]],
+      "sensor": "it8665/temp3",
+      "pwm": "it8665/pwm3",
+      "polyline": [[40,80], [50,255]],
       "stop": false,
+      "alpha": 0.5
+    },
+    {
+      "sensor": "it8665/temp4",
+      "pwm": "it8665/pwm4",
+      "stop": false,
+      "polyline": [[40,95], [50,255]],
       "alpha": 0.5
     }
   ]
