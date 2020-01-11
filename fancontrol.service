@@ -1,0 +1,10 @@
+[Unit]
+Description=Node.js Fancontrol Service
+
+[Service]
+Restart=on-failure
+WorkingDirectory=/opt/node-apps/fancontrol
+ExecStart=/usr/bin/env node /opt/node-apps/fancontrol/index.js
+
+[Install]
+WantedBy=multi-user.target
