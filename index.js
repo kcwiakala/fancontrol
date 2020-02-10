@@ -5,7 +5,7 @@ const System = require('./src/system');
 
 log4js.configure(require('./conf/logger'));
 const logger = log4js.getLogger();
-if(process.env.NODE_ENV === 'production') {
+if(process.argv.indexOf('prod') > 0) {
   logger.level = 'info';
 }
 
